@@ -1,0 +1,18 @@
+nginx:
+   build: ./
+   container_name: nginx1
+   ports:
+     - "443:443"
+     - "80:80"
+   links:
+     - ghost
+   restart: always
+
+ghost:
+   image: ghost
+   container_name: ghost1
+   environment:
+     - "NODE_ENV=production"
+   volumes:
+     - ./ghost-content:/var/lib/ghost
+   restart: always
